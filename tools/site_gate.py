@@ -16,6 +16,8 @@ REQUIRED_FILES = (
 
 ALLOWED_FILES = set(REQUIRED_FILES) | {
     ".nojekyll",
+    "changelog/2026-09-04-public-source-free-demo/NOTE.md",
+    "changelog/2026-09-04-public-source-free-demo/desktop.png",
     "docs/proof/desktop.png",
     "docs/proof/mobile.png",
     "docs/proof/fail-first.txt",
