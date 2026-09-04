@@ -129,6 +129,29 @@ def browser_gate(base_url: str, screenshot_dir: Path | None) -> tuple[int, int]:
                 overflow = page.evaluate("document.documentElement.scrollWidth - document.documentElement.clientWidth")
                 require(overflow <= 1, f"{name}: horizontal overflow={overflow}px")
 
+                contrast_script = """
+                    node => {
+                        const parse = value => (value.match(/[\\d.]+/g) || []).slice(0, 3).map(Number);
+                        const luminance = rgb => {
+                            const channels = rgb.map(value => {
+                                const channel = value / 255;
+                                return channel <= 0.04045 ? channel / 12.92 : Math.pow((channel + 0.055) / 1.055, 2.4);
+                            });
+                            return 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2];
+                        };
+                        const style = getComputedStyle(node);
+                        const foreground = luminance(parse(style.color));
+                        const background = luminance(parse(style.backgroundColor));
+                        return (Math.max(foreground, background) + 0.05) / (Math.min(foreground, background) + 0.05);
+                    }
+                """
+                for selector in (".trace-topbar b", ".engine-state", ".primary-action", ".editor-footer strong"):
+                    ratio = page.locator(selector).first.evaluate(contrast_script)
+                    require(ratio >= 4.5, f"{name}: contrast {selector}={ratio:.2f}:1")
+                page.locator(".primary-action").hover()
+                hover_ratio = page.locator(".primary-action").evaluate(contrast_script)
+                require(hover_ratio >= 4.5, f"{name}: hover contrast={hover_ratio:.2f}:1")
+
                 page.locator("#run-demo").click()
                 page.locator("#demo-status").wait_for(state="visible")
                 page.wait_for_function("document.querySelector('#demo-status')?.dataset.complete === 'true'")
