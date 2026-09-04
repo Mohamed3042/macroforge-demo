@@ -567,6 +567,10 @@ footer {
   text-transform: uppercase;
 }
 
+@media (max-width: 1280px) {
+  .trace-shell::before { display: none; }
+}
+
 @media (max-width: 1040px) {
   .hero { grid-template-columns: 1fr; min-height: auto; }
   .trace-shell { max-width: 680px; }

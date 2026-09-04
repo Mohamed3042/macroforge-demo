@@ -93,7 +93,7 @@ def browser_gate(base_url: str, screenshot_dir: Path | None) -> tuple[int, int]:
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True, executable_path=str(chrome))
         try:
-            for name, width, height in (("desktop", 1440, 1000), ("mobile", 390, 844)):
+            for name, width, height in (("desktop", 1440, 1000), ("mid", 1280, 900), ("mobile", 390, 844)):
                 context = browser.new_context(viewport={"width": width, "height": height})
                 page = context.new_page()
                 console_errors: list[str] = []
@@ -163,7 +163,7 @@ def browser_gate(base_url: str, screenshot_dir: Path | None) -> tuple[int, int]:
                 require(not console_errors, f"{name}: console errors: {console_errors}")
                 require(not page_errors, f"{name}: page errors: {page_errors}")
 
-                if screenshot_dir:
+                if screenshot_dir and name in {"desktop", "mobile"}:
                     screenshot_dir.mkdir(parents=True, exist_ok=True)
                     page.evaluate(
                         "document.documentElement.style.scrollBehavior = 'auto'; "
