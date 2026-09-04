@@ -1,0 +1,9 @@
+FAIL-FIRST — 2026-09-04
+
+Command:
+python tools\site_gate.py
+
+Decisive RED:
+SITE_GATE_RED missing required files: index.html, styles.css, script.js, README.md, NOTICE.md, assets/macroforge-studio.png, assets/macroforge-live-proof.png, assets/macroforge-recording.png
+
+The gate existed before the public page and rejected the missing implementation. A later privacy review removed `macroforge-live-proof.png` from the planned public bundle because that source capture contains an absolute local path.

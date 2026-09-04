@@ -1,0 +1,19 @@
+PRIVACY SABOTAGE — 2026-09-04
+
+Sabotage:
+Copied README.md to the repository root as DesktopLeak.cs.
+
+Command:
+python tools\site_gate.py
+
+Decisive RED:
+SITE_GATE_RED desktop implementation leaked: DesktopLeak.cs
+
+Second sabotage:
+Copied README.md to the repository root as MacroForge-source.zip.
+
+Decisive RED:
+SITE_GATE_RED unexpected public files: MacroForge-source.zip
+
+Cleanup:
+Both planted files were removed, and the unchanged exact-allowlist gate returned GREEN on the real public bundle.

@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0c10">
+  <meta name="description" content="A public, source-free walkthrough of MacroForge, Mohamed Mahmoud's Windows automation workbench.">
+  <meta property="og:title" content="MacroForge — Product Walkthrough">
+  <meta property="og:description" content="See how MacroForge records, edits, binds, and runs local Windows automation without exposing its desktop source code.">
+  <meta property="og:type" content="website">
+  <title>MacroForge — source-free product walkthrough</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23d71f45'/%3E%3Cpath d='M14 48V16h9l9 14 9-14h9v32h-9V30l-9 14-9-14v18z' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="MacroForge home">
+      <span class="brand-mark" aria-hidden="true">M</span>
+      <span><strong>MacroForge</strong><small>Automation workbench</small></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#workflow">How it works</a>
+      <a href="#proof">Proof</a>
+      <a href="#boundary">Source boundary</a>
+    </nav>
+    <span class="version">v1.0.0</span>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> Windows 10/11 · local automation</p>
+        <h1 id="hero-title">Record the routine.<br><em>Edit every move.</em></h1>
+        <p class="hero-lede">MacroForge turns keyboard, mouse, timing, variables, and pixel checks into readable instruction rows. This public walkthrough shows the product experience and measured results without including the desktop implementation.</p>
+        <div class="hero-actions">
+          <button class="primary-action" id="run-demo" type="button">
+            <span class="play-icon" aria-hidden="true">▶</span>
+            Run the walkthrough
+          </button>
+          <a class="text-link" href="#workflow">Read the workflow <span aria-hidden="true">↓</span></a>
+        </div>
+        <ul class="hero-facts" aria-label="Product facts">
+          <li><strong>No cloud</strong><span>Runs in user space</span></li>
+          <li><strong>No driver</strong><span>Ordinary Windows input</span></li>
+          <li><strong>No telemetry</strong><span>Work stays local</span></li>
+        </ul>
+      </div>
+
+      <div class="trace-shell" aria-label="Interactive MacroForge usage walkthrough">
+        <div class="trace-topbar">
+          <span>Execution trace</span>
+          <kbd>Ctrl</kbd><b>+</b><kbd>Alt</kbd><b>+</b><kbd>F9</kbd>
+        </div>
+        <ol class="trace-list">
+          <li data-demo-step data-state="idle">
+            <span class="trace-index">01</span>
+            <span><strong>Record</strong><small>Capture keyboard and mouse input</small></span>
+            <span class="trace-signal">ready</span>
+          </li>
+          <li data-demo-step data-state="idle">
+            <span class="trace-index">02</span>
+            <span><strong>Refine</strong><small>Edit readable instruction rows</small></span>
+            <span class="trace-signal">waiting</span>
+          </li>
+          <li data-demo-step data-state="idle">
+            <span class="trace-index">03</span>
+            <span><strong>Bind</strong><small>Assign a global hotkey and mode</small></span>
+            <span class="trace-signal">waiting</span>
+          </li>
+          <li data-demo-step data-state="idle">
+            <span class="trace-index">04</span>
+            <span><strong>Scope</strong><small>Limit execution to the intended window</small></span>
+            <span class="trace-signal">waiting</span>
+          </li>
+          <li data-demo-step data-state="idle">
+            <span class="trace-index">05</span>
+            <span><strong>Run locally</strong><small>Trigger the reviewed sequence</small></span>
+            <span class="trace-signal">waiting</span>
+          </li>
+        </ol>
+        <p id="demo-status" class="demo-status" role="status" aria-live="polite">Press “Run the walkthrough” to follow one automation from capture to execution.</p>
+      </div>
+    </section>
+
+    <section class="product-frame" aria-labelledby="workbench-title">
+      <div class="frame-label"><span>Source-free interface walkthrough</span><span>Representative Studio layout</span></div>
+      <div class="workbench" role="img" aria-label="Representative MacroForge Studio layout with macro library, instruction grid, command palette, and run log">
+        <div class="workbench-bar">
+          <span class="workbench-logo">M</span>
+          <span><strong>MacroForge</strong><small>Automation workbench</small></span>
+          <span class="engine-state">Engine on</span>
+          <span class="global-key">Global toggle <kbd>Ctrl+Alt+F12</kbd></span>
+          <span class="workbench-version">v1.0.0</span>
+        </div>
+        <div class="workbench-tabs" role="presentation"><strong>Studio</strong><span>Bindings</span><span>Profiles</span><span>Settings</span><span>Proof lab</span></div>
+        <div class="workbench-body">
+          <div class="library-panel">
+            <p>Macro library <small>1 file</small></p>
+            <div class="mini-actions"><span>+ File</span><span>+ Folder</span><span>Import</span></div>
+            <ul><li>Examples<ul><li>Quick Start</li></ul></li></ul>
+          </div>
+          <div class="instruction-panel">
+            <div class="editor-actions"><span>Save</span><span>Cut</span><span>Copy</span><span>Paste</span><span>Undo</span><span>Redo</span></div>
+            <table>
+              <thead><tr><th>#</th><th id="workbench-title">Instruction</th><th>Arguments</th><th>Note</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Comment</td><td>MacroForge quick start</td><td></td></tr>
+                <tr><td>2</td><td>Delay</td><td><code>ms=120</code></td><td></td></tr>
+                <tr><td>3</td><td>KeyDown</td><td><code>vk=0x41</code></td><td></td></tr>
+                <tr><td>4</td><td>KeyUp</td><td><code>vk=0x41</code></td><td></td></tr>
+              </tbody>
+            </table>
+            <div class="editor-footer"><span>Ready</span><span>● Record</span><strong>▶ Test run</strong><span>■ Stop</span></div>
+          </div>
+          <div class="palette-panel">
+            <p>Command palette</p>
+            <small>Insert at the program counter</small>
+            <div class="palette-keys"><span>A</span><span>B</span><span>Ctrl</span><span>Shift</span></div>
+            <h3>Time + flow</h3>
+            <div class="palette-commands"><span>Delay</span><span>Type Text</span><span>Goto</span><span>Loop Start</span><span>Variable</span><span>Compare</span></div>
+          </div>
+        </div>
+        <div class="run-log"><strong>Run log</strong><code>MacroForge v1.0.0 ready.</code><code>Opened macro: Quick Start</code><code>Recorder stopped: 2 events captured.</code></div>
+      </div>
+      <p class="shot-caption">This HTML representation explains the visible workflow; it contains no desktop implementation code.</p>
+    </section>
+
+    <section class="workflow section" id="workflow" aria-labelledby="workflow-title">
+      <div class="section-heading">
+        <p class="eyebrow"><span></span> The working loop</p>
+        <h2 id="workflow-title">From physical input to a reviewed local action</h2>
+        <p>Each stage stays visible. Nothing has to disappear into an opaque “automation” button.</p>
+      </div>
+      <div class="workflow-grid">
+        <article>
+          <span class="step-number">1</span>
+          <h3>Capture or create</h3>
+          <p>Record real keyboard and mouse input, or start with a blank macro and insert commands from the palette.</p>
+          <code>Record → 2 events captured</code>
+        </article>
+        <article>
+          <span class="step-number">2</span>
+          <h3>Inspect the rows</h3>
+          <p>Adjust timing, keys, coordinates, loops, variables, and notes in a readable instruction grid.</p>
+          <code>Delay · KeyDown · KeyUp</code>
+        </article>
+        <article>
+          <span class="step-number">3</span>
+          <h3>Bind and constrain</h3>
+          <p>Choose fire-once, hold-to-run, or repeat-while-held, then optionally filter by window title or process.</p>
+          <code>Ctrl + Alt + F9</code>
+        </article>
+        <article>
+          <span class="step-number">4</span>
+          <h3>Run and verify</h3>
+          <p>Keep the engine on, trigger the hotkey in the target application, and review the local run log.</p>
+          <code>Completed · 5 instructions</code>
+        </article>
+      </div>
+    </section>
+
+    <section class="language section" aria-labelledby="language-title">
+      <div class="language-intro">
+        <p class="eyebrow"><span></span> Command language</p>
+        <h2 id="language-title">Small instructions. Composable behavior.</h2>
+        <p>MacroForge combines ordinary input commands with control flow and on-screen color conditions.</p>
+      </div>
+      <div class="command-groups">
+        <article><span>Time</span><code>Delay</code><code>RandomDelay</code></article>
+        <article><span>Keyboard</span><code>KeyDown</code><code>KeyUp</code><code>TypeText</code></article>
+        <article><span>Mouse</span><code>Click</code><code>MoveRelative</code><code>MoveAbsolute</code></article>
+        <article><span>Flow</span><code>Goto</code><code>LoopStart</code><code>LoopEnd</code></article>
+        <article><span>Variables</span><code>Variable · assign</code><code>Variable · add</code><code>ConditionalGoto</code></article>
+        <article><span>Color</span><code>PixelAtEquals</code><code>AreaColorCountAtLeast</code><code>AreaColorCountRange</code></article>
+      </div>
+    </section>
+
+    <section class="proof section" id="proof" aria-labelledby="proof-title">
+      <div class="section-heading proof-heading">
+        <p class="eyebrow"><span></span> Measured on the packaged app</p>
+        <h2 id="proof-title">The demo is backed by a real Windows run</h2>
+        <p>Verification drove the built application from outside its process and checked what Windows actually received.</p>
+      </div>
+      <dl class="proof-grid">
+        <div><dt>14/14</dt><dd>deterministic engine tests passed</dd></div>
+        <div><dt>11</dt><dd>required UI controls found live</dd></div>
+        <div><dt>6</dt><dd>visible rows produced from 2 events</dd></div>
+        <div><dt>1</dt><dd>exact color-triggered click received</dd></div>
+        <div><dt>68</dt><dd>characters read back exactly in Notepad</dd></div>
+      </dl>
+      <div class="proof-console" aria-label="Decisive MacroForge acceptance lines">
+        <p><span>build</span><code>Build succeeded. 0 Warning(s) · 0 Error(s)</code></p>
+        <p><span>tests</span><code>RESULT passed=14 failed=0 total=14</code></p>
+        <p><span>ui</span><code>UI_GATE_OK controls=11</code></p>
+        <p><span>live</span><code>LIVE_GATE_OK recorderRows=6 colorClick=1 notepadChars=68 version=v1.0.0</code></p>
+      </div>
+      <p class="proof-caption"><strong>VERIFIED:</strong> the external acceptance process captured two input events and rendered six editable instruction rows. The same run measured one color-trigger click and exact 68-character Notepad readback.</p>
+    </section>
+
+    <section class="boundary section" id="boundary" aria-labelledby="boundary-title">
+      <div class="boundary-card">
+        <p class="boundary-kicker">Public demonstration · no desktop source</p>
+        <h2 id="boundary-title">You can inspect the experience, not the desktop source.</h2>
+        <p>This repository contains the webpage, source-free interface representation, usage explanation, and verification summary only. <strong>No application source or binaries are included.</strong></p>
+        <ul>
+          <li>Current development repository is private</li>
+          <li>No downloadable executable in this repository</li>
+          <li>v1.0.0 was previously released under MIT; prior grants remain valid</li>
+          <li>No desktop source, project files, or tests in this repository</li>
+        </ul>
+        <a class="github-link" href="https://github.com/Mohamed3042" rel="me">View Mohamed Mahmoud on GitHub <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>MacroForge · v1.0.0</span>
+    <span>Designed and built by Mohamed Mahmoud · 2026</span>
+    <span>Portfolio demonstration only</span>
+  </footer>
+</body>
+</html>
